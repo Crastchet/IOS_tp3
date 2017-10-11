@@ -1,4 +1,4 @@
-package comanche.naked;
+package fr.lille1.ios.comanche.naked;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

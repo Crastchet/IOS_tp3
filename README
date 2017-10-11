@@ -1,0 +1,9 @@
+Ne pas oublier d'ajouter la dependency :
+	<dependency>
+		<artifactId>osgi_R4_compendium</artifactId>
+		<groupId>org.osgi</groupId>
+		<version>1.0</version>
+	</dependency>
+Elle permet d'utiliser les serviceTracker
+
+

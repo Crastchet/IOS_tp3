@@ -1,4 +1,4 @@
-package comanche.naked;
+package fr.lille1.ios.comanche.naked;
 import java.io.IOException;
 
 /** Find and execute the servlet bind on the url */
