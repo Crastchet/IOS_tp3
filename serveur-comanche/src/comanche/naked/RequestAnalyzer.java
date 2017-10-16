@@ -11,7 +11,7 @@ import java.io.LineNumberReader;
  */
 public class RequestAnalyzer {
 	/** implicit contract: must not be null */
-	private RequestHandler rh = new ServletRequestHandler();
+	private RequestHandler rh = new RequestHandler();
 	//private ServletRequestHandler rh = new ServletRequestHandler();
 
 	/**

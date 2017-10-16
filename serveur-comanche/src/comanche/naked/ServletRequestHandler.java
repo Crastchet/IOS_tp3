@@ -2,7 +2,7 @@ package comanche.naked;
 import java.io.IOException;
 
 /** Find and execute the servlet bind on the url */
-public class ServletRequestHandler implements RequestHandler {
+public class ServletRequestHandler {
 	public void handleRequest(Request r) throws IOException {
 		// Split url by /
 		String[] urls = r.url.split("/");

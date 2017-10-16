@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /** Sends a the content of a file of the file system if the requested URL matches one. */
-public class FileRequestHandler implements RequestHandler {
+public class FileRequestHandler {
   public void handleRequest (Request r) throws IOException {
 	File f = new File(r.url);
     if (f.exists() && !f.isDirectory()) {

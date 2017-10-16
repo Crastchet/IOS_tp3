@@ -32,7 +32,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>fr.lille1.ios.Activator</Bundle-Activator>
-                        <Export-Package>fr.lille1.ios.commanche.naked</Export-Package>
+                        <Export-Package>fr.lille1.ios</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
