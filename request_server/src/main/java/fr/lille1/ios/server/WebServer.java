@@ -10,6 +10,8 @@ import fr.lille1.ios.itf.Request;
 public class WebServer implements Runnable {
 	private SequentialScheduler s = new SequentialScheduler();
 	private RequestAnalyzer rh = new RequestAnalyzer();
+	private boolean close = false;
+	
 
 	// functional aspect
 	public void run() {
@@ -19,8 +21,10 @@ public class WebServer implements Runnable {
 				try {
 					ss = new ServerSocket(8081);
 					System.err.println("Comanche HTTP Server ready on port 8081.");
-					while (true) {
+					while (true && !ss.isClosed()) {
+						System.out.println("AVANT");
 						final Socket socket = ss.accept();
+						System.out.println("APRES");
 						s.schedule(new Runnable() {
 							public void run() {
 								Request r;
@@ -39,6 +43,7 @@ public class WebServer implements Runnable {
 								}
 							}
 						});
+						
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -58,5 +63,9 @@ public class WebServer implements Runnable {
 	
 	public RequestAnalyzer getRequestAnalyzer() {
 		return this.rh;
+	}
+	
+	public void stop() {
+		this.close = true;
 	}
 }

@@ -49,7 +49,7 @@ public class RequestAnalyzer {
 			if(rh != null)
 				rh.handleRequest(r);
 			else
-				throw new IOException("Not any RequestHandler mode has been defined");
+				throw new IOException("Not any RequestHandler mode has been defined. Notice that it should not happen :/");
 		} else {
 			throw new CanNotCompleteTheRequestException("Invalid request : "+rq);
 		}
