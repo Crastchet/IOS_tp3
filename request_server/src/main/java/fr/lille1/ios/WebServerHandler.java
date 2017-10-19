@@ -28,7 +28,6 @@ public class WebServerHandler implements ServiceTrackerCustomizer {
 	
 	public Object addingService(ServiceReference reference) {
 		// TODO Auto-generated method stub
-		System.out.println("ON EST DANS LE ADD SERVICE");
 		RequestHandler requestHandler = context.getService(reference);
 		myServer.getRequestAnalyzer().setRequestHandler(requestHandler);
 		
@@ -39,7 +38,6 @@ public class WebServerHandler implements ServiceTrackerCustomizer {
 
 	public void modifiedService(ServiceReference reference, Object service) {
 		// TODO Auto-generated method stub
-		System.out.println("ON EST DANS LE MODIFIED SERVICE");
 		RequestHandler requestHandler = context.getService(reference);
 		myServer.getRequestAnalyzer().setRequestHandler(requestHandler);
 		

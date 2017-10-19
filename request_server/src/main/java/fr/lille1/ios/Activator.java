@@ -29,6 +29,7 @@ public class Activator implements BundleActivator {
     public void stop(BundleContext context) throws Exception {
         // TODO add deactivation code here
     	serviceTracker.close();
+    	server.stop();
     	System.out.println("Bundle REQUEST_SERVER stops...");
     }
 

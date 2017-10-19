@@ -3,6 +3,7 @@ package fr.lille1.ios.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 import fr.lille1.ios.itf.Request;
 
@@ -10,20 +11,20 @@ import fr.lille1.ios.itf.Request;
 public class WebServer implements Runnable {
 	private SequentialScheduler s = new SequentialScheduler();
 	private RequestAnalyzer rh = new RequestAnalyzer();
-	
+	private ServerSocket ss;
+	private boolean stillRunning;
 
 	// functional aspect
 	public void run() {
 		new Thread(new Runnable() {
 			public void run() {
-				ServerSocket ss = null;
+				ss = null;
 				try {
 					ss = new ServerSocket(8081);
+					stillRunning = !ss.isClosed();
 					System.err.println("Comanche HTTP Server ready on port 8081.");
-					while (true) {
-						System.out.println("AVANT");
+					while (true && stillRunning) {
 						final Socket socket = ss.accept();
-						System.out.println("APRES");
 						s.schedule(new Runnable() {
 							public void run() {
 								Request r;
@@ -44,6 +45,9 @@ public class WebServer implements Runnable {
 						});
 						
 					}
+				} catch (SocketException e) {
+					if(stillRunning)
+						throw new RuntimeException(e);
 				} catch (IOException e) {
 					e.printStackTrace();
 					throw new RuntimeException(e);
@@ -58,6 +62,16 @@ public class WebServer implements Runnable {
 				}
 			}
 		}).start();
+	}
+	
+	public void stop() {
+		try {
+			ss.close();
+			stillRunning = false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public RequestAnalyzer getRequestAnalyzer() {
